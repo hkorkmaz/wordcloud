@@ -1,0 +1,339 @@
+html,body {
+  height: 100%;
+  width:100%;
+  margin:0;
+  font-family: "Helvetica";
+  color: #777777;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+#app {
+    width: 100%;
+}
+
+.app-container {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+}
+
+.wc-canvas {
+	width: 100%;
+	height: 100%;
+}
+
+.full-screen {
+    margin-top:55px;
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+}
+
+.form-control{
+    color: #777777;
+}
+
+.form-control:focus {
+    outline: 0 !important;
+    border-color: initial;
+    box-shadow: none;
+}
+
+.wc-canvas > span {
+    transition: text-shadow 1s ease, opacity 1s ease;
+    -webkit-transition: text-shadow 1s ease, opacity 1s ease;
+    -ms-transition: text-shadow 1s ease, opacity 1s ease;
+}
+.wc-canvas > span:hover {
+    text-shadow: 0 0 10px, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.navbar-ext {
+	padding-top: 8px;
+	padding-bottom: 0px;
+}
+
+.navbar > ul {
+	display: flex;
+	list-style: none;
+	margin-bottom: 0px
+	padding-left: 0px;
+}
+
+.subnav-link {
+	color: #ffffff;
+	border-radius: unset;
+	margin-left: 0px;
+	margin-right: 0px;
+	display: block;
+}
+
+.subnav-link:hover, .subnav-link:focus{
+	text-decoration: none;
+	color: #ffffff;
+	transition: color .3s;
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-timing-function: initial;
+    transition-delay: initial;
+}
+
+.router-link-exact-active {
+	border-bottom: 3px solid;
+	color: #ffffff;
+}
+
+.subnav-link > .fas {
+	font-size: 24px;
+	margin-bottom: 2px;
+	display: block;
+}
+
+.subnav-link-cont{
+	text-align: center;
+	min-width: 80px;
+	font-size: 12px;
+}
+
+#word-cloud .settings {
+    padding: 3px;
+    display: inline;
+    position: relative;
+    float: right;
+    bottom: 50px;
+}
+
+#word-cloud .slider-wrapper {
+    display: inline;
+    width: 20px;
+    height: 100%;
+    padding-left: 5px;
+}
+
+#word-cloud .slider-wrapper input {
+  width: 150px;
+  height: 100%;
+  margin: 0;
+}
+
+.node {
+  cursor: move;
+  fill: #ccc;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.node .selected {
+  stroke: black;
+  fill: #ddd;
+}
+
+.link {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  padding: 4px;
+  font: 12px "Helvetica";
+  background: #c6dbef;
+  border: 0px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 400px;
+  margin: 0px auto;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 5px 0;
+}
+
+.modal-footer {
+  border: none;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.modal-footer, .modal-header, .modal-body{
+    padding: 5px 10px;
+}
+
+#article-list {
+    background-color: #f5f5f5;
+    display: block;
+    z-index: 1;
+    position:relative;
+    min-height: 100%;
+}
+
+#article-list > .list-row {
+    padding: 15px;
+    margin: 10px;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    border: 1px solid #FFFFFF;
+    cursor: pointer;
+    transition: all .1s ease;
+}
+
+#article-list > .list-row:hover,  #article-list > .list-row:focus, #article-list > .list-row.active{
+    border: 1px solid #6c757d;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+#article-list > .list-header {
+    padding: 15px;
+    border-bottom: 1px solid #E0E0E0;
+    margin: 0px 10px 15px 10px;
+    font-size: 12px;
+    color: #9E9E9E;
+    letter-spacing: 0;
+}
+
+.w-80 {
+    width: 80% !important;
+    margin: auto;
+}
+
+#articles-container {
+    background-color: #f5f5f5;
+    min-height: calc(100vh - 55px);
+    padding-bottom: 5px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 30%;
+    position: fixed;
+    z-index: 10000;
+    top: 0px;
+    right: 0;
+    background-color: #f5f5f5;
+    overflow-y: scroll;
+    max-height: 100%;
+    padding-top: 0px;
+    box-shadow: 1px 1px 1px 1px rgba(90, 98, 104, 0.3), -1px -1px 1px 1px rgba(90, 98, 104, 0.3);
+    font-size: 10px;
+}
+
+.sidebar-title {
+    border-bottom: 1px solid #E0E0E0;
+    padding: 8px;
+    height: 58px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 42px;
+}
+
+.slide-sidebar-enter-active,
+.slide-sidebar-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+
+.slide-sidebar-enter {
+    transform: translateX(100%);
+}
+
+.slide-sidebar-enter-to {
+    transform: translateX(0);
+}
+
+.slide-sidebar-leave-to {
+    transform: translateX(100%);
+}
+
+.new-article {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.btn-circle{
+    width: 40px !important;
+    height: 40px !important;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.bg-white{
+    background-color: #ffffff !important;
+}
+
+.color-white {
+    color: #ffffff !important;
+}
+
+#article-list > .list-footer {
+    padding: 15px;
+    border-top: 1px solid #E0E0E0;
+    margin: 0px 10px 15px 10px;
+    font-size: 16px;
+    color: #9E9E9E;
+    letter-spacing: 0;
+}

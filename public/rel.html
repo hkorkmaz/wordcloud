@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <style type="text/css">
+        #d3_selectable_force_directed_graph svg {
+            border: 1px solid;
+            font: 13px sans-serif;
+            text-anchor: end;
+        }
+
+        .node {
+          cursor: move;
+          fill: #ccc;
+          stroke: #000;
+          stroke-width: 1.5px;
+        }
+
+        .node .selected {
+          stroke: black;
+          fill: #ddd;
+        }
+
+        .node .fixed {
+          fill: #555;
+        }
+
+        .link {
+          stroke: #000;
+          stroke-width: 1.5px;
+        }
+
+        div.tooltip {
+          position: absolute;
+          text-align: center;
+          vertical-align: middle;
+          padding: 4px;
+          font: 12px "Trebuchet MS";
+          background: lightsteelblue;
+          border: 0px;
+          border-radius: 4px;
+          pointer-events: none;
+      }
+
+      body,html{
+         height:100%
+      }
+
+
+    </style>
+
+</head>
+<body>
+<input onkeypress="search()" id="search">
+<div width="100%" height="100%" id="d3_selectable_force_directed_graph"></div>
+<svg></svg>
+</body>
+
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="js/rel.js"></script>
+
+<script type="text/javascript" >
+    var svg = d3.select('#d3_selectable_force_directed_graph');
+
+    Array.prototype.inArray = function(comparer) {
+        for(var i=0; i < this.length; i++) {
+            if(comparer(this[i])) return true;
+        }
+        return false;
+    };
+
+    // adds an element to the array if it does not already exist using a comparer
+    // function
+    Array.prototype.pushIfNotExist = function(element, comparer) {
+        if (!this.inArray(comparer)) {
+            this.push(element);
+        }
+    };
+
+    var timeoutId = 0;
+    function search() {
+        clearTimeout(timeoutId); // doesn't matter if it's 0
+        timeoutId = setTimeout(refresh, 500);
+        // Note: when passing a function to setTimeout, just pass the function name.
+        // If you call the function, like: getFilteredResultCount(), it will execute immediately.
+    };
+
+    function refresh(){
+        var query = document.getElementById('search').value;
+        var url = query ? '/rels?q='+query : '/rels';
+        d3.json(url, function(error, data) {
+            var nodes = [];
+            for (i = 0; i < data.length; i++) {
+                nodes.push({"id": data[i].id, "title": data[i].title});
+                for(j=0; j < data[i].keywords.length; j++ ){
+                    nodes.pushIfNotExist({"id": data[i].keywords[j]}, function(e){
+                        return e.id == data[i].keywords[j];
+                    });
+                }
+            }
+
+            var links = [];
+            for (i = 0; i < data.length; i++) {
+                for(j=0; j < data[i].keywords.length; j++ ){
+                    links.push({"source": data[i].id , "target": data[i].keywords[j]});
+                }
+            }
+
+            var graph = {
+                nodes: nodes,
+                links: links
+            }
+
+            console.log(graph);
+            createGraph(svg, graph);
+        })
+    };
+
+    refresh();
+
+</script>
+
+</html>
+

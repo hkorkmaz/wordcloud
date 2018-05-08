@@ -1,0 +1,319 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <script src="js/wordcloud.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Finger+Paint">
+    <style>
+  @media (min-width: 980px) {
+    body { padding: 0px; }
+  }
+  body {
+	  font-family: 'Trebuchet MS', serif;
+	  font-size: 48px;
+	  margin: 0px;
+	  padding: 0px;
+	}
+
+  *[hidden] {
+    display: none;
+  }
+
+  #canvas-container {
+    overflow-x: auto;
+    overflow-y: visible;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .canvas {
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .canvas.hide {
+    display: none;
+  }
+
+  #html-canvas > span {
+    transition: text-shadow 1s ease, opacity 1s ease;
+    -webkit-transition: text-shadow 1s ease, opacity 1s ease;
+    -ms-transition: text-shadow 1s ease, opacity 1s ease;
+  }
+
+  #html-canvas > span:hover {
+    text-shadow: 0 0 10px, 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #fff;
+    opacity: 0.5;
+  }
+
+  #box {
+    pointer-events: none;
+    position: absolute;
+    box-shadow: 0 0 200px 200px rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    cursor: pointer;
+  }
+
+  textarea {
+    height: 20em;
+  }
+  #config-option {
+    font-family: monospace;
+  }
+  select { width: 100%; }
+
+  #loading {
+    animation: blink 2s infinite;
+    -webkit-animation: blink 2s infinite;
+  }
+  @-webkit-keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  @keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+
+    </style>
+
+    </style>
+</head>
+<body>
+	
+	<div id="html-canvas" style="width:100%;height: 100%"/>
+
+	<script type="text/javascript">
+		var list = [
+		    ["design",444],
+			["architectural",160],
+			["information",130],
+			["process",113],
+			["model",109],
+			["architecture",97],
+			["new",90],
+			["study",84],
+			["virtual",80],
+			["system",77],
+			["computer",73],
+			["used",70],
+			["these",69],
+			["thesis",68],
+			["systems",68],
+			["different",67],
+			["based",67],
+			["space",63],
+			["environment",62],
+			["part",61],
+			["user",54],
+			["form",53],
+			["data",52],
+			["digital",52],
+			["technology",50],
+			["explained",49],
+			["database",47],
+			["research",47],
+			["using",45],
+			["chapter",45],
+			["developed",44],
+			["building",43],
+			["approaches",40],
+			["examples",40],
+			["future",40],
+			["approach",39],
+			["use",37],
+			["tools",37],
+			["visual",36],
+			["studios",36],
+			["methods",36],
+			["according",35],
+			["within",34],
+			["buildings",34],
+			["studies",34],
+			["way",34],
+			["analysis",34],
+			["aided",32],
+			["technologies",32],
+			["how",32],
+			["being",32],
+			["housing",31],
+			["defined",31],
+			["examined",31],
+			["important",31],
+			["software",31],
+			["designer",30],
+			["through",30],
+			["structural",30],
+			["knowledge",30],
+			["application",29],
+			["between",29],
+			["designers",29],
+			["proposed",29],
+			["models",28],
+			["time",28],
+			["problem",28],
+			["developments",28],
+			["context",27],
+			["interface",27],
+			["problems",26],
+			["discussed",26],
+			["education",26],
+			["case",25],
+			["project",24],
+			["environments",24],
+			["first",24],
+			["effects",24],
+			["during",24],
+			["generation",23],
+			["tool",23],
+			["field",23],
+			["projects",23],
+			["work",23],
+			["main",23],
+			["possible",23],
+			["aim",23],
+			["order",23],
+			["users",23],
+			["usage",22],
+			["results",22],
+			["physical",22],
+			["processes",22],
+			["concepts",21],
+			["made",21],
+			["human",21],
+			["while",21],
+			["techniques",21],
+			["construction",20],
+			["applications",20],
+			["created",20],
+			["structure",20],
+			["concept",20],
+			["students",19],
+			["two",19],
+			["reality",19],
+			["role",19],
+			["analyzed",19],
+			["development",19],
+			["place",19],
+			["should",19],
+			["mentioned",19],
+			["become",19],
+			["computational",19],
+			["urban",18],
+			["areas",18],
+			["cultural",18],
+			["structures",18],
+			["method",18],
+			["point",18],
+			["area",18],
+			["them",18],
+			["related",18],
+			["generative",18],
+			["subject",17],
+			["agent",17],
+			["scope",17],
+			["solutions",17],
+			["program",17],
+			["second",17],
+			["studio",17],
+			["help",17],
+			["changes",17],
+			["parameters",17],
+			["our",17],
+			["section",17],
+			["importance",17],
+			["phase",16],
+			["result",16],
+			["interaction",16],
+			["period",16],
+			["architects",16],
+			["intelligence",16],
+			["possibilities",16],
+			["making",16],
+			["many",16],
+			["introduced",16],
+			["technological",16],
+			["media",16],
+			["like",16],
+			["augmented",15],
+			["designed",15],
+			["basic",15],
+			["communication",15],
+			["programs",15],
+			["support",15],
+			["given",15],
+			["dimensional",15],
+			["general",15],
+			["traditional",15],
+			["living",14],
+			["develop",14],
+			["hand",14],
+			["change",14],
+			["then",14],
+			["nature",14],
+			["representation",14],
+			["purpose",14],
+			["third",14],
+			["cyberspace",14],
+			["house",14],
+			["features",14],
+			["performance",14],
+			["same",14],
+			["group",13],
+			["interactive",13],
+			["solution",13],
+			["artificial",13],
+			["precedents",13],
+			["contemporary",13],
+			["city",13],
+			["addition",13],
+			["relations",13],
+			["integrated",13],
+			["well",13],
+			["make",13],
+			["researched",13],
+			["complex",13],
+			["evaluated",13],
+			["requirements",12],
+			["thus",12],
+			["potentials",12],
+			["age",12],
+			["learning",12],
+			["another",12],
+			["what",12],
+			["social",12],
+			["means",12],
+			["life",12],
+			["spatial",12],
+		];
+		c = function(a) {
+            return function() {
+                return a[Math.floor(Math.random() * a.length)]
+            }
+        };
+
+		var options = {
+		  "list": list,
+		  "gridSize": 0,
+		  "weightFactor": 0.8,
+		  "fontFamily": '"Trebuchet MS"',
+		  "color": function() {
+            return "rgb(" + Math.floor(128 * Math.random() + 48).toString(10) + "," + Math.floor(128 * Math.random() + 48).toString(10) + "," + Math.floor(128 * Math.random() + 48).toString(10) + ")"
+          },
+		  "shape": "triangle-forward", //circle,cardioid,diamond,square,triangle-forward,triangle,triangle-upright,pentagon,star
+		  "hover": window.drawBox,
+		  "click": function(item) {
+		    alert(item[1]);
+		  },
+		  "backgroundColor": '#eee',
+          "drawOutOfBound":true,
+          "clearCanvas": false
+		}	
+
+		WordCloud(document.getElementById('html-canvas'), options );
+	</script>
+
+</body>
+</html>
+

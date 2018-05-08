@@ -1,0 +1,31 @@
+{
+    "settings" : {
+        "number_of_shards" : 1
+    },
+    "mappings" : {
+        "article" : {
+            "properties" : {
+                "author" : { "type" : "text" },
+                "keywords" : { "type" : "text" },
+                "supervisor" : { "type" : "text" },
+                "year" : { "type" : "text" },
+                "summary" : { "type" : "text" }
+            }
+        }
+    }
+}
+
+
+
+{
+      "author":"Behiç Can Aldemir",
+      "keywords": [
+        "biomimetics",
+        "L-systems",
+        "parametric design",
+        "generative systems"
+      ],
+      "supervisor":"Prof.Dr. Sinan Mert Şener",
+      "year": 2014,
+      "abstract": ""
+}
