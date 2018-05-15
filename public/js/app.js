@@ -576,13 +576,9 @@ const Admin = {
                         <td class="col-lg-2">{{art.author}}</td>
                         <td class="col-lg-1">{{art.year}}</td>
                         <td class="col-lg-1">
-                            <a @click="setArticle(art)">
-                                <i class="fas fa-edit"></i>
-                            </a>
                             <a :href="art.link" target="_blank" v-if="art.link" class="external-link">
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
-
                         </td>
                     </tr>
                     <tr class="row list-footer">
