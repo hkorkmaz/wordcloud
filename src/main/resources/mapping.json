@@ -262,6 +262,9 @@
         "year": {
           "type": "integer"
         },
+        "link": {
+          "type": "text"
+        },
         "summary": {
           "type": "text",
           "analyzer": "my_analyzer",

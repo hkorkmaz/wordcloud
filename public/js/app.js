@@ -73,7 +73,9 @@ Vue.component('word-cloud', {
                 backgroundColor: '#fff',
                 drawOutOfBound: false,
                 clearCanvas: false,
-                hover: this.triggerWordHover
+                hover: this.triggerWordHover,
+                minRotation: 0,
+                maxRotation: 0
             }
             WordCloud(this.$el.querySelector(".wc-canvas"), options)
         },
@@ -179,7 +181,7 @@ Vue.component('keyword-relation', {
                               .domain([0, graph.max_score])
                               .range([5, 10])
 
-            var yearScale = d3.scaleSequential(d3.interpolateGreens)
+            var yearScale = d3.scaleSequential(d3.interpolateGreys)
                                 .domain([2000, graph.max_year]);
 
             var link = gDraw.append("g")
@@ -212,7 +214,7 @@ Vue.component('keyword-relation', {
                     return d.data.score ? rScale(d.data.score) : 10;
                 })
                 .attr("fill", function(d) {
-                    return d.isKeyword ? colorScale[2] : yearScale(d.year);
+                    return d.isKeyword ? "white" : yearScale(d.year);
                 })
                 .call(drag)
                 .on("click", nodeClick)
@@ -241,6 +243,7 @@ Vue.component('keyword-relation', {
             simulation.force("link")
                 .links(graph.links);
 
+/*
             d3.interval(function() {
               var n = graph.nodes.pop(); // Remove c.
               //graph.links.pop(); // Remove c-a.
@@ -255,7 +258,7 @@ Vue.component('keyword-relation', {
                   restart(graph.nodes, newLinks);
               }
             }, 2000, d3.now());
-
+*/
             function restart(newNodes, newLinks) {
                 // Apply the general update pattern to the nodes.
                 node = node.data(newNodes, function(d) { return d.id;});
@@ -561,19 +564,29 @@ const Admin = {
           	<div class="w-80">
                 <table class="w-100" id="article-list">
                     <tr class="row list-header">
-                        <td class="col-lg-6">Title</td>
+                        <td class="col-lg-5">Title</td>
                         <td class="col-lg-3">Supervisor</td>
                         <td class="col-lg-2">Author</td>
                         <td class="col-lg-1">Year</td>
+                        <td class="col-lg-1"></td>
                     </tr>
                     <tr v-for="art of articles" class="row list-row" v-bind:class="activeArticle(art.id)" @click="setArticle(art)" :key="art.id">
-                        <td class="col-lg-6 text-truncate">{{art.title}}</td>
+                        <td class="col-lg-5 text-truncate">{{art.title}}</td>
                         <td class="col-lg-3">{{art.supervisor}}</td>
                         <td class="col-lg-2">{{art.author}}</td>
                         <td class="col-lg-1">{{art.year}}</td>
+                        <td class="col-lg-1">
+                            <a @click="setArticle(art)">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a :href="art.link" target="_blank" v-if="art.link" class="external-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+
+                        </td>
                     </tr>
                     <tr class="row list-footer">
-                        <td class="col-lg-6">Total : {{articles.length}}</td>
+                        <td class="col-lg-7">Total : {{articles.length}}</td>
                     </tr>
                 </table>
             </div>
@@ -608,6 +621,10 @@ const Admin = {
                       <div class="form-group">
                         <label>Year</label>
                         <input type="text" class="form-control" v-model.number="article.year">
+                      </div>
+                      <div class="form-group">
+                        <label>Link</label>
+                        <input type="text" class="form-control" v-model.number="article.link">
                       </div>
                       <div class="form-group">
                         <label>Abstract</label>

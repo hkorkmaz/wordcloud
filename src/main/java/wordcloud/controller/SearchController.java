@@ -30,6 +30,7 @@ public class SearchController {
                 .add("title", incoming.getString("title"))
                 .add("summary", incoming.getString("summary"))
                 .add("supervisor", incoming.getString("supervisor"))
+                .add("link",  incoming.getString("link"))
                 .add("author", incoming.getString("author"))
                 .add("keywords", incoming.getJsonArray("keywords"))
                 .add("id", id)

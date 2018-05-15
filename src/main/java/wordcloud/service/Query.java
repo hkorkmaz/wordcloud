@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Query {
-    private static List<String> FIELDS_TO_SEARCH = Arrays.asList("summary", "title", "keywords", "supervisor", "author");
+    private static List<String> FIELDS_TO_SEARCH = Arrays.asList("summary", "title", "keywords", "supervisor", "author", "link");
 
     public static JsonObject wordCloud(String term) {
         JsonObject query;

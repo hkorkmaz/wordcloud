@@ -337,3 +337,8 @@ div.tooltip {
     color: #9E9E9E;
     letter-spacing: 0;
 }
+
+.external-link, .external-link:hover{
+    color: #6c757d;
+    margin-left: 5px;
+}
