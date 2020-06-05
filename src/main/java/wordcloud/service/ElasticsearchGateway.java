@@ -49,7 +49,7 @@ public class ElasticsearchGateway {
                 .map(JsonValue::asJsonObject)
                 .forEach((json) -> {
                     String id = json.getString("id");
-                    Response response = ws.path(String.format("/wordcloud/article/%s", id))
+                    Response response = ws.path(String.format("/wordcloud/_doc/%s", id))
                             .request()
                             .post(Entity.entity(json.toString(), APPLICATION_JSON_TYPE));
                     if(response.getStatus() > 300)
@@ -58,7 +58,7 @@ public class ElasticsearchGateway {
     }
 
     public JsonObject query(JsonObject query) {
-        Response response = ws.path("/wordcloud/article/_search")
+        Response response = ws.path("/wordcloud/_doc/_search")
                 .request()
                 .post(Entity.entity(query.toString(), APPLICATION_JSON_TYPE));
 
@@ -69,7 +69,7 @@ public class ElasticsearchGateway {
     }
 
     public JsonObject upsert(String id, JsonObject object) {
-        Response response = ws.path(String.format("/wordcloud/article/%s", id))
+        Response response = ws.path(String.format("/wordcloud/_doc/%s", id))
                 .queryParam("refresh", "true")
                 .request()
                 .put(Entity.entity(object.toString(), APPLICATION_JSON_TYPE));
@@ -81,7 +81,7 @@ public class ElasticsearchGateway {
     }
 
     public JsonObject delete(String id) {
-        Response response = ws.path(String.format("/wordcloud/article/%s", id))
+        Response response = ws.path(String.format("/wordcloud/_doc/%s", id))
                 .queryParam("refresh", "true")
                 .request()
                 .delete();
