@@ -248,28 +248,28 @@
     }
   },
   "mappings": {
-    "article": {
-      "properties": {
-        "author": {
-          "type": "text", "analyzer":"turkish"
-        },
-        "keywords": {
-          "type": "text"
-        },
-        "supervisor": {
-          "type": "text", "analyzer":"turkish"
-        },
-        "year": {
-          "type": "integer"
-        },
-        "link": {
-          "type": "text"
-        },
-        "summary": {
-          "type": "text",
-          "analyzer": "my_analyzer",
-          "fielddata": true
-        }
+    "properties": {
+      "author": {
+        "type": "text",
+        "analyzer": "turkish"
+      },
+      "keywords": {
+        "type": "text"
+      },
+      "supervisor": {
+        "type": "text",
+        "analyzer": "turkish"
+      },
+      "year": {
+        "type": "integer"
+      },
+      "link": {
+        "type": "text"
+      },
+      "summary": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "fielddata": true
       }
     }
   }
